@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,7 +17,11 @@ import RotateLeftRoundedIcon from "@mui/icons-material/RotateLeftRounded";
 import themeColor from "../../Data/themeColor.json";
 import { useSelector } from "react-redux";
 import { Grid } from '@mui/material';
-import {auth} from '../../Firebase/FirebaseAuth';
+import { signOutFromGoogle } from "../../Firebase/FirebaseAuth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { removeUser } from "../../store/authSlice";
+import { useDispatch } from "react-redux";
+import {Link} from '@mui/material';
 
 const pages = ['Project', 'ContactMe'];
 
@@ -27,7 +31,6 @@ function Nav() {
   const loading = useSelector((state) => state.loading);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,6 +46,19 @@ function Nav() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  let dispatch = useDispatch();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("in about page");
+      } else {
+        dispatch(removeUser([]));
+      }
+    });
+  }, []);
 
   return (
     <AppBar position="static">
@@ -103,11 +119,17 @@ function Nav() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem >
+                <Link href='https://www.youtube.com/@takeUforward/playlists' target="_blank" rel="noopener">
+                  Resource
+                </Link>
                 </MenuItem>
-              ))}
+                <MenuItem>
+                <Link href="https://www.linkedin.com/in/robinkumar1509/" target="_blank" rel="noopener">
+                  Contact Me
+                </Link>
+                </MenuItem>
+             
             </Menu>
             
           </Box>
@@ -145,21 +167,31 @@ function Nav() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' },marginRight:'7rem',justifyContent:'flex-end',
 alignItems: 'center' }}>
             
-            {pages.map((page) => (
+            
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                
+                href='https://www.youtube.com/@takeUforward/playlists'
+                target="_blank"
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                Resource
               </Button>
-            ))}  
+              <span> | </span>
+              <Button
+                
+                href='https://www.linkedin.com/in/robinkumar1509/'
+                target="_blank"
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Contact Me
+              </Button>
+            
           </Box>
           
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={user ? user.photoURL : "../static/images/avatar/2.jpg"} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -180,7 +212,13 @@ alignItems: 'center' }}>
             >
               
                 <MenuItem  onClick={handleCloseUserMenu}>
-                <button onClick={() => auth.signOut()}>Sign out</button>
+                <Button
+              variant="contained"
+              size="small"
+              onClick={signOutFromGoogle}
+            >
+              log out
+            </Button>
                 </MenuItem>
               
             </Menu>
@@ -191,16 +229,20 @@ alignItems: 'center' }}>
   );
 }
 const Title = styled.h1`
-  font-size: ${(props) => (props.pickOne === "pickOne" ? "1rem" : "1rem")};
+  font-size: 1rem;
   text-align: center;
   justify-content: center;
   align-items: center;
   margin-left: ${(props) => props.marginLeft || "0rem"};
   color: ${(props) => props.color || "white"};
   padding-left: ${(props) => props.paddingLeft || "0rem"};
-  fontFamily: 'monospace',
-  /* padding-right: ${(props) => props.padding || "0rem"}; */
+  font-family: 'monospace';
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;

@@ -77,7 +77,7 @@ const Cont = styled.div`
   background-color: #001e3c;
 `;
 const Title = styled.h1`
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
   color: ${(props) => props.color || "white"};
@@ -88,6 +88,9 @@ const Title = styled.h1`
   padding: 0.4rem;
   cursor: pointer;
   text-decoration: none;
+  @media (max-width: 768px) {
+    font-size: 0.5rem;
+  }
 `;
 
 const Wrapper = styled.div`

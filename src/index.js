@@ -6,6 +6,7 @@ import store from "../src/store/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 let persistor = persistStore(store);
+document.title="Algo180";
 const rootElement = document.getElementById("root");
 ReactDOM.createRoot(rootElement).render(
   <Provider store={store}>
