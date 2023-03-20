@@ -33,10 +33,8 @@ const Display = (props) => {
   const bookmarks = useSelector((state) => state.bookmark);
   //const user = useSelector((state) => state.auth);
 
-const auth = getAuth();
-const user = auth.currentUser;
-
-  const userRef = doc(db, "users", user.uid);
+  const user = useSelector((state) => state.auth);
+  const userRef = doc(db, "users", user[0][1]);
 
   let params = useParams();
   let dispatch = useDispatch();
