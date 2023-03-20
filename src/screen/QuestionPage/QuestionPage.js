@@ -53,7 +53,7 @@ function QuestionPage() {
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 85.5vh;
+  height: 84.5vh;
   justify-content: center;
   flex-direction: column;
   align-items: center;

@@ -21,7 +21,7 @@ import { signOutFromGoogle } from "../../Firebase/FirebaseAuth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { removeUser } from "../../store/authSlice";
 import { useDispatch } from "react-redux";
-import {Link} from '@mui/material';
+import { Link } from '@mui/material';
 
 const pages = ['Project', 'ContactMe'];
 
@@ -61,46 +61,46 @@ function Nav() {
   }, []);
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky" sx={{ height: '10vh' }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <FaLaptopCode sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} size={32} />
+        <Toolbar disableGutters >
+          
           <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}>
-        <Box sx={{
-          display: { xs: 'none', md: 'flex' },
-          fontFamily: 'monospace',
-          fontWeight: 700,
-          color: 'inherit',
-          textDecoration: 'none',
-        }}>
-          <Wrapper>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}>
+            <Box sx={{
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
-            }}
-          >Algo180</Typography>
+            }}>
+              <Wrapper>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="a"
+                  href="/"
+                  sx={{
+                    mr: 2,
+                    display: { xs: 'none', md: 'flex' },
+                    fontFamily: 'monospace',
+                    fontWeight: 700,
+                    letterSpacing: '.3rem',
+                    color: 'inherit',
+                    textDecoration: 'none',
+                  }}
+                >Algo180</Typography>
 
-            <Title color={themeColor[currTheme][0].text} paddingLeft="2.25rem">
-              Total Solved : {items.length }
-              / 191
-            </Title>
-          </Wrapper>
-        </Box>
-      </Box>
+                <Title color={themeColor[currTheme][0].text} paddingLeft="2.25rem">
+                  Total Solved : {items.length}
+                  / 191
+                </Title>
+              </Wrapper>
+            </Box>
+          </Box>
           <Box sx={{ flexGrow: 0.4, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large" aria-label="account of current user" aria-controls="menu-appbar"
@@ -110,84 +110,86 @@ function Nav() {
             </IconButton>
             <Menu
               id="menu-appbar" anchorEl={anchorElNav}
-              anchorOrigin={{vertical: 'bottom', horizontal: 'left',}}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
               keepMounted
-              transformOrigin={{ vertical: 'top',horizontal: 'left',}}
+              transformOrigin={{ vertical: 'top', horizontal: 'left', }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-                <MenuItem >
+              <MenuItem >
                 <Link href='https://www.youtube.com/@takeUforward/playlists' target="_blank" rel="noopener">
                   Resource
                 </Link>
-                </MenuItem>
-                <MenuItem>
+              </MenuItem>
+              <MenuItem>
                 <Link href="https://www.linkedin.com/in/robinkumar1509/" target="_blank" rel="noopener">
                   Contact Me
                 </Link>
-                </MenuItem>
-             
+              </MenuItem>
+
             </Menu>
-            
+
           </Box>
 
-         
+
           <Box
             variant="h5"
             noWrap
             component="a"
             href=""
             sx={{
-              mr: 2,display: { xs: 'flex', md: 'none' }, flexGrow: 0.5,fontFamily: 'monospace',
-              fontWeight: 700,color: 'inherit',textDecoration: 'none',}}
+              mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 0.5, fontFamily: 'monospace',
+              fontWeight: 700, color: 'inherit', textDecoration: 'none',
+            }}
           >
             <Wrapper>
-          <Title
-            color="white"
-            paddingLeft="3rem"
-          >
-            ALGO180
-          </Title>
-        </Wrapper>
+              <Header
+                
+              >
+                ALGO180
+              </Header>
+            </Wrapper>
             <Grid item lg={3} md={12} sm={12} xs={12}>
-              
-        <Wrapper>
-          <Title color={themeColor[currTheme][0].text} paddingLeft="2.25rem">
-            Total Solved : {loading ? <RotateLeftRoundedIcon /> : items.length}{" "}
-            / 191
-          </Title>
-        </Wrapper>
-      </Grid>
+
+              <Wrapper>
+                <Title color={themeColor[currTheme][0].text} paddingLeft="2.25rem">
+                  Total Solved : {items.length}
+                  / 191
+                </Title>
+              </Wrapper>
+            </Grid>
           </Box>
-          
-          
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' },marginRight:'7rem',justifyContent:'flex-end',
-alignItems: 'center' }}>
-            
-            
-              <Button
-                
-                href='https://www.youtube.com/@takeUforward/playlists'
-                target="_blank"
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Resource
-              </Button>
-              <span> | </span>
-              <Button
-                
-                href='https://www.linkedin.com/in/robinkumar1509/'
-                target="_blank"
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Contact Me
-              </Button>
-            
+
+
+          <Box sx={{
+            flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginRight: '7rem', justifyContent: 'flex-end',
+            alignItems: 'center'
+          }}>
+
+
+            <Button
+
+              href='https://www.youtube.com/@takeUforward/playlists'
+              target="_blank"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Resource
+            </Button>
+            <span> | </span>
+            <Button
+
+              href='https://www.linkedin.com/in/robinkumar1509/'
+              target="_blank"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Contact Me
+            </Button>
+
           </Box>
-          
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -210,17 +212,17 @@ alignItems: 'center' }}>
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              
-                <MenuItem  onClick={handleCloseUserMenu}>
+
+              <MenuItem onClick={handleCloseUserMenu}>
                 <Button
-              variant="contained"
-              size="small"
-              onClick={signOutFromGoogle}
-            >
-              log out
-            </Button>
-                </MenuItem>
-              
+                  variant="contained"
+                  size="small"
+                  onClick={signOutFromGoogle}
+                >
+                  log out
+                </Button>
+              </MenuItem>
+
             </Menu>
           </Box>
         </Toolbar>
@@ -229,7 +231,7 @@ alignItems: 'center' }}>
   );
 }
 const Title = styled.h1`
-  font-size: 1rem;
+  font-size: 1.4rem;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -241,6 +243,12 @@ const Title = styled.h1`
   @media (max-width: 768px) {
     font-size: 0.8rem;
   }
+`;
+
+const Header = styled.h1`
+  font-size: 1.2rem;
+  color: white;
+  padding-right: 0rem;
 `;
 
 const Wrapper = styled.div`

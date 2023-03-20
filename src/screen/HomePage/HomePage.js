@@ -79,7 +79,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 84.5vh;
+  height: 83vh;
   background-color: ${(props) => props.color || "white"};
 `;
 export default HomePage;

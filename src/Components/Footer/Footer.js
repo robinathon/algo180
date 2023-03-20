@@ -36,16 +36,7 @@ function Footer() {
 
   return (
     <Cont>
-      <Grid
-        container
-      >
-        <Grid item lg={9.5} md={6} sm={12} xs={12}>
-          <Wrapper Padding="3rem" Margin="0.7rem">
-            <Name color={themeColor[currTheme][0].text}>
-              <span>{greeting}, thanks for visiting!</span>
-            </Name>
-          </Wrapper>
-        </Grid>
+      
         <Grid item lg={2.5} md={6} sm={12} xs={12}>
           <Wrapper Padding="3rem">
             
@@ -58,24 +49,30 @@ function Footer() {
                 onClick={() => navigate("/bookmarks")}
               />
               <span>
-                {bookmarked.length > 0
-                  ? loading
-                    ? "*"
-                    : bookmarked.length
-                  : ""}
+                {bookmarked.length > 0 ? bookmarked.length : ""}
               </span>
             </BookmarkCont>
+            <Name color={themeColor[currTheme][0].text} >
+              
+              <span>{greeting}, thanks for visiting!</span>
+            </Name>
           </Wrapper>
-        </Grid>
+    
+        
       </Grid>
     </Cont>
   );
 }
 const Cont = styled.div`
+  position: sticky;
+  bottom: 0;
   display: flex;
   width: 100%;
   background-color: #001e3c;
+  flex-direction: row;
+  height: 7vh;
 `;
+
 const Title = styled.h1`
   font-size: 1.5rem;
   text-align: center;
@@ -104,6 +101,7 @@ const Wrapper = styled.div`
   height: 5vh;
   gap: 1.5rem;
   margin-top: 0.5rem;
+  //margin-bottom: 0.5rem;
   a {
     text-decoration: none;
   }
@@ -114,6 +112,10 @@ const Name = styled.h1`
   gap: 1rem;
   span {
     color: #c3393e;
+  }
+  margin-left: 30rem;
+  @media (max-width: 768px) {
+    margin-left: 3rem;
   }
 `;
 const BookmarkCont = styled.div`

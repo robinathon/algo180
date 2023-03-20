@@ -23,11 +23,9 @@ const Card = (props) => {
       </div>
       <Descrip>
         Total Solved :{" "}
-        {loading ? (
-          <RotateLeftRoundedIcon />
-        ) : (
+        {
           totalSolved(props.start, props.end)
-        )}{" "}
+        }{" "}
         / {props.totalQ}
       </Descrip>
       <BtnCont>
@@ -49,6 +47,10 @@ const Wrapper = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   /* #0059b2; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 0.5rem;
   padding: 0.5rem;
   transition: transform 0.2s;
@@ -64,6 +66,7 @@ const Button = styled.button`
   color: white;
   border-radius: 0.3rem;
   border: 2px solid #4caf50;
+
   &:hover {
     background-color: #4caf50;
     color: white;
@@ -75,11 +78,15 @@ const Title = styled.h2`
   padding: 0.5rem;
   height: 6vh;
   font-weight: bold;
+  font-size: 1.3rem;
 `;
 const Descrip = styled.h3`
   color: whitesmoke;
   padding: 0.5rem;
   margin-bottom: 0.2rem;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
 `;
 const BtnCont = styled.div`
   width: 100%;
